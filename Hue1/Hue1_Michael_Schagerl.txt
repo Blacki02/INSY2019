@@ -1,0 +1,75 @@
+--region 1. Hue
+--region DEPARTMENTS
+    SELECT DEPARTMENT_NAME, MANAGER_ID from DEPARTMENTS
+    where MANAGER_ID is not NULL;
+
+    SELECT DEPARTMENT_NAME, MANAGER_ID from DEPARTMENTS
+    where MANAGER_ID is not NULL and not(DEPARTMENT_NAME in ('IT', 'Marketing'));
+
+    SELECT DEPARTMENT_NAME, MANAGER_ID from DEPARTMENTS
+    where MANAGER_ID is not NULL;
+
+    SELECT DEPARTMENT_NAME, MANAGER_ID from DEPARTMENTS
+    where MANAGER_ID is not NULL
+          ORDER BY DEPARTMENT_NAME DESC;
+--endregion
+--region LOCATIONS
+    SELECT * from LOCATIONS
+    where COUNTRY_ID = 'JP';
+
+    SELECT * from LOCATIONS
+    where COUNTRY_ID = 'JP' and CITY in ('Tokyo', 'Osaka');
+
+    SELECT COUNTRY_ID, CITY, STREET_ADDRESS from LOCATIONS
+    where COUNTRY_ID = 'JP' and CITY in ('Tokyo', 'Osaka');
+
+    SELECT COUNTRY_ID, CITY, STREET_ADDRESS from LOCATIONS
+    where COUNTRY_ID = 'JP' and CITY in ('Tokyo', 'Osaka') ORDER BY POSTAL_CODE;
+--endregion
+--region EMPLOYEES
+    SELECT * from EMPLOYEES
+    where JOB_ID like('%SA%');
+
+    SELECT * from EMPLOYEES
+    where JOB_ID like('%SA%') and MANAGER_ID is not null;
+
+    SELECT FIRST_NAME, LAST_NAME from EMPLOYEES
+    where JOB_ID like('%SA%') and MANAGER_ID is not null;
+
+    SELECT FIRST_NAME, LAST_NAME, FIRST_NAME || LAST_NAME || '@ORACLE.COM' "EMAIL" from EMPLOYEES
+    where JOB_ID like('%SA%') and MANAGER_ID is not null;
+
+    SELECT FIRST_NAME, LAST_NAME, FIRST_NAME || LAST_NAME || '@ORACLE.COM' "EMAIL" from EMPLOYEES
+    where JOB_ID like('%SA%') and MANAGER_ID is not null
+    ORDER BY LAST_NAME;
+--endregion
+--region SUBPROJECTS
+    SELECT * from SUBPROJECTS
+    WHERE FOCUS_RESEARCH between 45 and 65;
+
+    SELECT * from SUBPROJECTS
+    WHERE FOCUS_RESEARCH between 45 and 65
+    and FOCUS_RESEARCH + APPLIED_RESEARCH + THEORETICAL_FOUNDATION = 100;
+
+    SELECT SUBPROJECT_ID, PROJECT_ID, FOCUS_RESEARCH + APPLIED_RESEARCH + THEORETICAL_FOUNDATION "Points" from SUBPROJECTS
+    WHERE FOCUS_RESEARCH between 45 and 65
+    and FOCUS_RESEARCH + APPLIED_RESEARCH + THEORETICAL_FOUNDATION = 100;
+--endregion
+--region L_PROJECTS
+    SELECT * FROM L_PROJECTS
+    WHERE IS_EU_SPONSERED = 'y' and IS_FFG_SPONSERED = 'n' and IS_FWF_SPONSERED = 'n'
+    or IS_EU_SPONSERED = 'n' and IS_FFG_SPONSERED = 'y' and IS_FWF_SPONSERED = 'n'
+    or IS_EU_SPONSERED = 'n' and IS_FFG_SPONSERED = 'n' and IS_FWF_SPONSERED = 'y';
+
+    SELECT PROJECT_ID, TITLE, PROJECT_TYPE FROM L_PROJECTS
+    WHERE IS_EU_SPONSERED = 'y' and IS_FFG_SPONSERED = 'n' and IS_FWF_SPONSERED = 'n'
+    or IS_EU_SPONSERED = 'n' and IS_FFG_SPONSERED = 'y' and IS_FWF_SPONSERED = 'n'
+    or IS_EU_SPONSERED = 'n' and IS_FFG_SPONSERED = 'n' and IS_FWF_SPONSERED = 'y';
+--endregion
+--endregion
+
+not(real >= 32 or not (index < 0 and deptno = 20))
+
+real < 32 and not(index >= 0 or deptno != 20)
+
+real < 32 and index < 0 and deptno = 20
